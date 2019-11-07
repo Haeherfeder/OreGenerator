@@ -1,0 +1,15 @@
+onlyPlayerBreakGenerateOre: true
+oreGenerator:
+- itemInHand: '*'
+  displayName: ''
+  permission: ''
+  worlds: []
+  chances:
+  - '30, STONE'
+- itemInHand: 'DIAMOND_PICKAXE'
+  displayName: '&6Ore Pickaxe'
+  permission: 'skyblock.vip'
+  worlds: []
+  chances:
+  - '20, IRON_ORE'
+  - '3, DIAMOND_BLOCK'

@@ -1,0 +1,6 @@
+displayName: OreGenerator
+main: oregenerator.OreGenerator
+name: OreGenerator
+version: 1.0
+author: Cubia
+api-version: 1.13
