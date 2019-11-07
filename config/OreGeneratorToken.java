@@ -50,7 +50,7 @@ public class OreGeneratorToken
 					} 
 				} 
 			}
-	},1L); 
+		},1L); 
 	}
 
 

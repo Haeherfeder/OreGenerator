@@ -21,7 +21,6 @@ public class ConfigManager {
 	private Yaml yaml;
   
 	public void init() { initConfig(); }
-
   
 	public void initConfig() {
 		DumperOptions options = new DumperOptions();
@@ -39,52 +38,52 @@ public class ConfigManager {
 
 
   
-  @SuppressWarnings("unchecked")
-  private <T> T createConfig(String configPath, Class<T> clazz) {
-	  if (!OreGenerator.PLUGIN.getDataFolder().exists()) {
-		  OreGenerator.PLUGIN.getDataFolder().mkdir();
-	  }
+	@SuppressWarnings("unchecked")
+	private <T> T createConfig(String configPath, Class<T> clazz) {
+		if (!OreGenerator.PLUGIN.getDataFolder().exists()) {
+			OreGenerator.PLUGIN.getDataFolder().mkdir();
+		}
     
-	  T config = null;
-	  File file = new File(configPath);
-	  if (file.exists()) {
-		  try {
-			  config = (T)this.yaml.load(new InputStreamReader(new FileInputStream(configPath), "UTF-8"));
-		  } catch (FileNotFoundException e) {
-			  e.printStackTrace();
-		  } catch (UnsupportedEncodingException e) {
-			  e.printStackTrace();
-      } 
-	  } else {
-		  try {
-			  config = (T)clazz.newInstance();
-		  } catch (InstantiationException e) {
-			  e.printStackTrace();
-		  } catch (IllegalAccessException e) {
-			  e.printStackTrace();
-		  } 
-		  try {
-			  this.yaml.dump(config, new OutputStreamWriter(new FileOutputStream(configPath), "UTF-8"));
-		  } catch (IOException e) {
-			  e.printStackTrace();
-		  } 
-	  } 
-	  return config;
-  	}
+		T config = null;
+		File file = new File(configPath);
+		if (file.exists()) {
+			try {
+				config = (T)this.yaml.load(new InputStreamReader(new FileInputStream(configPath), "UTF-8"));
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			} 
+		} else {
+			try {
+				config = (T)clazz.newInstance();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} 
+			try {
+				this.yaml.dump(config, new OutputStreamWriter(new FileOutputStream(configPath), "UTF-8"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
+		} 
+		return config;
+  	}	
   
-  public <T> void saveConfig(String configPath, T config) {
-	  try {
-		  this.yaml.dump(config, new FileWriter(configPath));
-	  } catch (IOException e) {
-		  e.printStackTrace();
-	  } 
-  }
+	public <T> void saveConfig(String configPath, T config) {
+		try {
+			this.yaml.dump(config, new FileWriter(configPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+	}
 
-  public Yaml getYaml() { return this.yaml; }
-  public static void main(String... args) {
-    ConfigManager configManager = new ConfigManager();
-    configManager.init();
-    configManager.createConfig("config.yml", Config.class);
-  }
-  public Config getConfig() { return this.config; }
+	public Yaml getYaml() { return this.yaml; }
+	public static void main(String... args) {
+		ConfigManager configManager = new ConfigManager();
+		configManager.init();
+		configManager.createConfig("config.yml", Config.class);
+	}
+	public Config getConfig() { return this.config; }
 }
