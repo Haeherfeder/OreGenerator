@@ -48,7 +48,9 @@ public class BlockBreakListener implements Listener
   public void BlockBreakEvent(BlockBreakEvent event) {
 	  //	System.out.println("\n\n\nTest");
 	  Block cobblestone = event.getBlock();
-	  if (cobblestone.getType().equals(Material.COBBLESTONE)) {
+//	  event.getPlayer().sendMessage("Block "+event.getBlock().getType()+"zerstört.");
+	  if (cobblestone.getType().equals(Material.COBBLESTONE)||cobblestone.getType().equals(Material.STONE)) {
+//		  event.getPlayer().sendMessage("Stone or Cobble");
 		  Location location = cobblestone.getLocation();
 		  boolean lava = false;
 		  boolean water = false;
@@ -64,9 +66,13 @@ public class BlockBreakListener implements Listener
 				  } 
 			  } 
 		  } 
-		  if (lava && water)
+		  if (lava && water) {
+//			  event.getPlayer().sendMessage("Added to list");
 			  PLAYER_BREAK_BLOCK.add(new PlayerBreakBlock(event.getPlayer(), event, event.getPlayer().getItemInHand(), Integer.valueOf(100))); 
 			//	System.out.println("\n\n\nTest2: lava"+lava+" Water "+water);
+		  }else {
+//			  event.getPlayer().sendMessage("Not added.");
 		  }
+	}
   	}
 }

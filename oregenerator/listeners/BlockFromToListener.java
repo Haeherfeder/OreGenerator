@@ -4,7 +4,8 @@
  import java.util.Random;
  import oregenerator.OreGenerator;
 
- import org.bukkit.Material;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
  import org.bukkit.block.Block;
  import org.bukkit.block.BlockFace;
  import org.bukkit.event.EventHandler;
@@ -28,10 +29,12 @@
 	 @EventHandler
 	 public void BlockFromToEvent(BlockFromToEvent event) {
 //	System.out.println("\n\n\nBlockfromToListeners startet.");
-		 int id = event.getBlock().getType().getId();
+		 Material mat = event.getBlock().getType();
+//		 Bukkit.broadcastMessage("BlockFromToEvent startet"+event.getBlock().getType()+event.getToBlock().getType());
 //	System.out.println("\n\n\n"+id+" id: "+event.getToBlock().getType().getId());
-		 if (((id >= 8 && id <= 11)||(id == 8415)) && (event.getToBlock().getType().getId()  == 0 || event.getToBlock().getType().getId() == 9648) && generatesCobble(id, event.getToBlock())) 
+		 if (((mat.equals(Material.WATER)||mat.equals(Material.LEGACY_WATER)||mat.equals(Material.LEGACY_STATIONARY_WATER)||mat.equals(Material.AIR)||mat.equals(Material.LAVA))) && (event.getToBlock().getType().equals(Material.AIR) || event.getToBlock().getType().equals(Material.COBBLESTONE)||event.getToBlock().getType().equals(Material.STONE))) 
 		 {
+//			 Bukkit.broadcastMessage("BlockFromToEvent Water ");
 //       System.out.println("\n\n\ntrue");
 			 PlayerBreakBlock locationBlock = null;
 			 for (PlayerBreakBlock playerBreakBlock : BlockBreakListener.PLAYER_BREAK_BLOCK) {
@@ -44,6 +47,7 @@
 			 if (locationBlock != null || !OreGenerator.CONFIG_MANAGER.getConfig().isOnlyPlayerBreakGenerateOre()) {
 				 OreGeneratorToken token = OreGenerator.CONFIG_MANAGER.getConfig().getDefaultOreGeneratorToken(event.getBlock().getWorld().getName());
 				 if (locationBlock != null) {
+//					 locationBlock.getPlayer().sendMessage("should gen.");
 					 ItemStack breakItemInHand = locationBlock.getItemInHand();
 //System.out.println("\n\n\nOKAY");
 					 for (OreGeneratorToken oreGeneratorToken : OreGenerator.CONFIG_MANAGER.getConfig().getOreGenerator()) {
@@ -88,6 +92,7 @@
 						 if (number >= chance) {
 							 event.getToBlock().setType(content.getMaterial());
 							 event.setCancelled(true);
+//							 locationBlock.getPlayer().sendMessage("Should set to "+content.getMaterial());
 //               event.getToBlock().setData((byte)content.getDurability());
   //             System.out.println("\n\n\n"+content.getMaterial());
 							 break;
@@ -99,7 +104,8 @@
 		 } 
 	 }
 	 @SuppressWarnings("deprecation")
-	 public boolean generatesCobble(int id, Block b) {
+	 public boolean generatesCobble(Material mat, Block b) {
+		 int id = mat.getId();
 		 int mirrorID1 = (id != 8 && id != 9) ? 8 : 10;
 		 int mirrorID2 = (id != 8 && id != 9) ? 9 : 11;
 		 BlockFace[] var8 = this.faces;
