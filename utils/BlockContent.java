@@ -10,13 +10,18 @@ public class BlockContent
 	private double percent;
 	private Material material;
 	private int durability;
-  
-	public BlockContent(double percent, Material material, int durability) 
+	private String lore;
+	
+	public BlockContent(double percent, Material material, int durability, String lore) 
 	{
 		this.percent = percent;
 	    this.material = material;
 	    this.durability = durability;
+	    this.lore = lore;
 	}
+	public String getLore() {return lore;}
+	
+	public void setLore(String lore) {this.lore = lore;}
 	
 	public double getPercent() { return this.percent; }
 	  

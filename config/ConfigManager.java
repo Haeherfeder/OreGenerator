@@ -28,7 +28,7 @@ public class ConfigManager {
 		options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
 		options.setPrettyFlow(true);
 		this.yaml = new Yaml(new CustomClassLoaderConstructor(OreGenerator.class.getClassLoader()), new Representer(), options);
-    
+		
 		this.config = (Config)createConfiguration(OreGenerator.PLUGIN.getDataFolder().getAbsolutePath() + File.separator + "config.yml", Config.class);
 	}
 

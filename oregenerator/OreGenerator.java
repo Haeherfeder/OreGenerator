@@ -14,7 +14,9 @@ public class OreGenerator extends JavaPlugin
 	
 	public void onEnable() {
 		PLUGIN = this;
-	
+
+		saveDefaultConfig();
+		
 		CONFIG_MANAGER = new ConfigManager();
 		CONFIG_MANAGER.init();
 	

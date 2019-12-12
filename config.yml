@@ -1,15 +1,40 @@
+--- !!config.Config
 onlyPlayerBreakGenerateOre: true
 oreGenerator:
-- itemInHand: '*'
+- itemInHand: DIAMOND_PICKAXE
   displayName: ''
-  permission: ''
+  lore: 'Ore Pickaxe'
   worlds: []
   chances:
-  - '30, STONE'
-- itemInHand: 'DIAMOND_PICKAXE'
-  displayName: '&6Ore Pickaxe'
-  permission: 'skyblock.vip'
+  - 4, IRON_ORE
+  - 0.5, DIAMOND_ORE
+  - 3, COAL_ORE
+  - 0.7, EMERALD_ORE
+  - 2, GOLD_ORE
+  - 0.8, LAPIS_ORE
+  - 1, REDSTONE_ORE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: ''
+  worlds: []
+  lore: 'Dia Ore Pickaxe'
+  chances: 
+    - 99, STONE
+    - 1, DIAMOND_ORE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: 'TestHacke'
+  lore: 'Test'
   worlds: []
   chances:
-  - '20, IRON_ORE'
-  - '3, DIAMOND_BLOCK'
+  - 100, IRON_ORE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: 'TestHacke'
+  lore: ''
+  worlds: []
+  chances:
+  - 100, GOLD_ORE
+- itemInHand: ''
+  displayName: ''
+  worlds: []
+  chances:
+  - 70, STONE
+  - 10, DIRT

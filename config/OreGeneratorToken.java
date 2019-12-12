@@ -14,6 +14,7 @@ public class OreGeneratorToken
 {
 	private String itemInHand;
 	private String displayName;
+	private String lore;
 	private String permission;
 	private List<String> chances;
 	private List<String> worlds;
@@ -25,6 +26,7 @@ public class OreGeneratorToken
 
 		this.itemInHand = "*";
 		this.displayName = "";
+		this.lore = "";
 		this.permission = "";
 		this.chances = new ArrayList<String>();
 		this.worlds = new ArrayList<String>();
@@ -37,12 +39,13 @@ public class OreGeneratorToken
 			public void run() {
 				for (String chance : OreGeneratorToken.this.chances) {
 					try {
+						Bukkit.broadcastMessage("Chance "+chance);
 						Double percent = Double.valueOf(chance.split(", ")[0]);
 						String[] material = chance.split(", ")[1].split(":");
 						Material type = Material.valueOf(material[0]);
 						int durability = (material.length > 1) ? Integer.valueOf(material[1]).intValue() : 0;
 						if (type != null && percent != null && type.isBlock() && percent.doubleValue() > 0.0D) {
-							OreGeneratorToken.this.content.add(new BlockContent(percent.doubleValue(), type, durability));
+							OreGeneratorToken.this.content.add(new BlockContent(percent.doubleValue(), type, durability,""));
 						}
 					}
 					catch (Exception e) {
@@ -61,11 +64,10 @@ public class OreGeneratorToken
 	
 	
 	public String getDisplayName() { return this.displayName; }
-	
-	
 	public void setDisplayName(String displayName) { this.displayName = displayName; }
 	
-	
+	public String getLore() {return this.lore;}
+	public void setLore(String lore) { this.lore = lore;	}
 	
 	public String getPermission() { return this.permission; }
 		
