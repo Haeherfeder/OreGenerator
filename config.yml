@@ -15,11 +15,46 @@ oreGenerator:
   - 1, REDSTONE_ORE
 - itemInHand: DIAMOND_PICKAXE
   displayName: ''
+  lore: 'Iron Ore Pickaxe'
+  worlds: []
+  chances:
+  - 40, IRON_ORE
+  - 20, STONE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: ''
+  lore: 'Emerald Ore Pickaxe'
+  worlds: []
+  chances:
+  - 20, STONE
+  - 7, EMERALD_ORE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: ''
+  lore: 'Gold Ore Pickaxe'
+  worlds: []
+  chances:
+  - 20, GOLD_ORE
+  - 20, STONE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: ''
+  lore: 'Lapis Ore Pickaxe'
+  worlds: []
+  chances:
+  - 20, STONE
+  - 8, LAPIS_ORE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: ''
+  lore: 'Redstone Ore Pickaxe'
+  worlds: []
+  chances:
+  - 20, STONE
+  - 10, REDSTONE_ORE
+- itemInHand: DIAMOND_PICKAXE
+  displayName: ''
   worlds: []
   lore: 'Dia Ore Pickaxe'
   chances: 
-    - 99, STONE
-    - 1, DIAMOND_ORE
+    - 20, STONE
+    - 5, DIAMOND_ORE
 - itemInHand: DIAMOND_PICKAXE
   displayName: 'TestHacke'
   lore: 'Test'
@@ -27,8 +62,8 @@ oreGenerator:
   chances:
   - 100, IRON_ORE
 - itemInHand: DIAMOND_PICKAXE
-  displayName: 'TestHacke'
-  lore: ''
+  displayName: ''
+  lore: 'TestHacke'
   worlds: []
   chances:
   - 100, GOLD_ORE
