@@ -65,14 +65,24 @@ public class BlockBreakListener implements Listener
 					  } 
 				  } 
 			  } 
-		  } 
-		  if (lava && water) {
+		  }
+		  if (lava && water && newLoc(location)) {
 //			  event.getPlayer().sendMessage("Added to list");
-			  PLAYER_BREAK_BLOCK.add(new PlayerBreakBlock(event.getPlayer(), event, event.getPlayer().getItemInHand(), Integer.valueOf(100))); 
+			  PLAYER_BREAK_BLOCK.add(new PlayerBreakBlock(event.getPlayer(), event, event.getPlayer().getItemInHand(), Integer.valueOf(1000))); 
 			//	System.out.println("\n\n\nTest2: lava"+lava+" Water "+water);
 		  }else {
 //			  event.getPlayer().sendMessage("Not added.");
 		  }
 	}
   	}
+
+
+private boolean newLoc(Location location) {
+	for(PlayerBreakBlock playerBreakBlock : BlockBreakListener.PLAYER_BREAK_BLOCK) {
+		  if(playerBreakBlock.getEvent().getBlock().getLocation().equals(location)) {
+			  return false;
+		  }
+	  }
+	return true;
+	}
 }
