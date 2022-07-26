@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import oregenerator.OreGenerator;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
@@ -19,7 +23,7 @@ public class ConfigManager {
 	public static final String CONFIG = "config.yml";
 	public Config config;
 	private Yaml yaml;
-  
+
 	public void init() { initConfig(); }
   
 	public void initConfig() {
@@ -29,41 +33,36 @@ public class ConfigManager {
 		options.setPrettyFlow(true);
 		this.yaml = new Yaml(new CustomClassLoaderConstructor(OreGenerator.class.getClassLoader()), new Representer(), options);
 		
-		this.config = (Config)createConfiguration(OreGenerator.PLUGIN.getDataFolder().getAbsolutePath() + File.separator + "config.yml", Config.class);
+		this.config = createConfiguration(OreGenerator.PLUGIN.getDataFolder().getAbsolutePath() + File.separator + "config.yml", Config.class);
 	}
 
 
   
-	public <T> T createConfiguration(String configPath, Class<T> clazz) { return (T)createConfig(configPath, clazz); }
+	public Config createConfiguration(String configPath, Class<Config> clazz) { return createConfig(configPath, clazz); }
 
 
   
-	@SuppressWarnings("unchecked")
-	private <T> T createConfig(String configPath, Class<T> clazz) {
+	private Config createConfig(String configPath, Class<Config> clazz) {
 		if (!OreGenerator.PLUGIN.getDataFolder().exists()) {
 			OreGenerator.PLUGIN.getDataFolder().mkdir();
 		}
     
-		T config = null;
+		Config config = null;
 		File file = new File(configPath);
 		if (file.exists()) {
 			try {
-				config = (T)this.yaml.load(new InputStreamReader(new FileInputStream(configPath), "UTF-8"));
+				config = this.yaml.load(new InputStreamReader(new FileInputStream(configPath), StandardCharsets.UTF_8));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			} 
+			}
 		} else {
 			try {
-				config = (T)clazz.newInstance();
-			} catch (InstantiationException e) {
+				config = clazz.newInstance();
+			} catch (InstantiationException | IllegalAccessException e) {
 				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} 
+			}
 			try {
-				this.yaml.dump(config, new OutputStreamWriter(new FileOutputStream(configPath), "UTF-8"));
+				this.yaml.dump(config, new OutputStreamWriter(Files.newOutputStream(Paths.get(configPath)), StandardCharsets.UTF_8));
 			} catch (IOException e) {
 				e.printStackTrace();
 			} 

@@ -24,8 +24,8 @@ public class BlockBreakListener implements Listener
 				List<PlayerBreakBlock> remove = null;
 	            for (PlayerBreakBlock playerBreakBlock : BlockBreakListener.PLAYER_BREAK_BLOCK) 
 	            {
-	            	Integer cooldown = Integer.valueOf(playerBreakBlock.getCooldown().intValue() - 1);
-	            	if (cooldown.intValue() <= 0) {
+	            	int cooldown = playerBreakBlock.getCooldown() - 1;
+	            	if (cooldown <= 0) {
 	            		if (remove == null) {
 	            			remove = new ArrayList<PlayerBreakBlock>();
 	            		}
@@ -68,7 +68,7 @@ public class BlockBreakListener implements Listener
 		  }
 		  if (lava && water && newLoc(location)) {
 //			  event.getPlayer().sendMessage("Added to list");
-			  PLAYER_BREAK_BLOCK.add(new PlayerBreakBlock(event.getPlayer(), event, event.getPlayer().getItemInHand(), Integer.valueOf(1000))); 
+			  PLAYER_BREAK_BLOCK.add(new PlayerBreakBlock(event.getPlayer(), event, event.getPlayer().getItemInHand(), 1000));
 			//	System.out.println("\n\n\nTest2: lava"+lava+" Water "+water);
 		  }else {
 //			  event.getPlayer().sendMessage("Not added.");

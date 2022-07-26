@@ -1,8 +1,7 @@
 package oregenerator;
 
 import config.ConfigManager;
-import oregenerator.listeners.BlockBreakListener;
-import oregenerator.listeners.BlockFromToListener;
+import oregenerator.listeners.*;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
