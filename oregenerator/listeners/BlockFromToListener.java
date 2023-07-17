@@ -74,10 +74,10 @@ import utils.PlayerBreakBlock;
 							 needed_type_arr = new Material[0];
 						 }
 						 List<Material> needed_type = Arrays.asList(needed_type_arr);
-						 int durability = (itemInHand.length > 1) ? Integer.parseInt(itemInHand[0][1]) : -1;
+						 int durability = itemInHand[0].length > 1 ? Integer.parseInt(itemInHand[0][1]) : -1;
 //             System.out.println("\n\n\nDur: "+durability+"DispName "+oreGeneratorToken.getDisplayName()+" Disp2: "+breakItemInHand.getItemMeta().getDisplayName());
 						 if (needed_type.contains(breakItemInHand.getType()) && (durability == -1 || breakItemInHand.getDurability() == durability) && (oreGeneratorToken.getDisplayName().isEmpty() || (breakItemInHand.hasItemMeta() && breakItemInHand.getItemMeta().hasDisplayName() && oreGeneratorToken.getDisplayName().equals(breakItemInHand.getItemMeta().getDisplayName()))) && (token.getWorlds().isEmpty() || token.getWorlds().contains(event.getBlock().getLocation().getWorld().getName().toLowerCase()))) {
-							 if(oreGeneratorToken.getLore().equals(null)|| oreGeneratorToken.getLore().isEmpty()|| oreGeneratorToken.getLore().equals("")||(locationBlock.getItemInHand().hasItemMeta() && locationBlock.getItemInHand().getItemMeta().hasLore() && locationBlock.getItemInHand().getItemMeta().getLore().contains(oreGeneratorToken.getLore()))) {
+							 if(oreGeneratorToken.getLore() == null || oreGeneratorToken.getLore().isEmpty()|| oreGeneratorToken.getLore().equals("")||(locationBlock.getItemInHand().hasItemMeta() && locationBlock.getItemInHand().getItemMeta().hasLore() && locationBlock.getItemInHand().getItemMeta().getLore().contains(oreGeneratorToken.getLore()))) {
 								 if (!(token.getPermission() != null && !token.getPermission().isEmpty() && !locationBlock.getPlayer().hasPermission(token.getPermission()))) {
 //								 Bukkit.broadcastMessage("Lore:" + oreGeneratorToken.getLore()+"is"+locationBlock.getItemInHand().getItemMeta().getLore());
 								 token = oreGeneratorToken; 
